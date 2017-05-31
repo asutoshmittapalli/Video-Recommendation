@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>MyVideo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- CSS -->
+        <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap-responsive.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='jquery.lightbox-0.5.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='custom-styles.css') }}">
+
+        <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/jquery.custom.js"></script>
+
+    </head>
+	
+    <body >
+    
+    <div class="color-bar-1"></div>
+       <!-- <div class="color-bar-2 color-bg"></div>-->
+            <div class="row "><!-- Begin Header -->
+             <!-- Logo -->
+                <div class="col-sm-6">.
+                    <img src = "img/video-icon-300px.png" alt="" style="width:20px;height:20px;"  ></img>
+                </div>
+                <div class="col-sm-6">
+                    <h2  align="center">My Videos</h2>
+                </div>
+            </div><!-- End Header -->
+     
+
+            <!-- Blog Sidebar --> 
+            
+            <div class="span6 sidebar">
+
+                {%if username%}
+                <p>{{username}}</p>
+                {%endif%}
+            
+                <form id="auth" action = "http://172.16.68.19:5000/auth" method = "POST">
+                    <input id="user" type="text" name="username" placeholder="UserName">
+                    <input id="pwd" type="text" name="password" placeholder="Password">
+                    <input id="submit" type="submit" value="Login">
+                </form>
+            </div>
+         
+            <div class="span6 sidebar">
+                <section>
+                    <div class="input-append">                
+                         <form form id="searchbox" action = "http://172.16.68.19:5000/refresh" method = "POST">
+                            <input id="search" size="16" type="text" name="Searched for : "  placeholder="Search">
+                            <button class="btn" id="submit" type="submit"><i class="icon-search"></i></button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+
+            
+    <br>
+    
+    <div class="footer-container"><!-- Begin Footer -->
+        <div class="container">
+            <div class="row footer-row">
+                <div class="span4 footer-col">
+                    <h5>About Us</h5>
+                   
+                    <address>
+                        <strong>Group Members:</strong><br />
+                        Chetna Warkade(140101016)<br />
+                        Kavya Basuti(140123009)<br />
+                        Asutosh Mittapalli(140123008)<br />
+                        Santosh Reddy(140123010)<br />
+                    </address>
+                    <ul class="social-icons">
+                        <li><a href="www.facebook.com" class="social-icon facebook"></a></li>
+                        <li><a href="#" class="social-icon twitter"></a></li>
+                        
+                    </ul>
+                </div>
+                <div class="span8 footer-col">
+                    <h3>Description</h3>
+                    <p>This is a web-portal for searching a youtube API database hosted at 172.16.68.19 using mongodb,neo4j and flask.</p>
+                </div>
+                </div>
+           <div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
+
+        </div>
+    </div> 
+       
+
+
+
+    </body>
+</html>

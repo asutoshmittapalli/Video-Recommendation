@@ -1,0 +1,94 @@
+<html>
+
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>MyVideo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- CSS -->
+        <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap-responsive.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='jquery.lightbox-0.5.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static',filename='custom-styles.css') }}">
+
+        <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/jquery.custom.js"></script>
+
+    </head>
+
+    <body>
+	{%if username%}
+	<p>{{username}}</p>
+	{%endif%}
+    <div class="color-bar-1"></div>
+    <div class="color-bar-2 color-bg"></div>
+    
+    <div class="container main-container">
+    
+        <div class="row header"><!-- Begin Header -->
+      
+        <!-- Logo
+        ================================================== -->
+        <div class="span5 logo">
+            <!--<img src="img/video.png" alt="" style="width:80px;height:40px;"/></a>-->
+                    <div class="input-append">                
+                         <form form id="searchbox" action = "http://172.16.68.19:5000/refresh" method = "POST">
+                            <input id="search" size="16" type="text" name="Searched for : "  placeholder="Search">
+                            <button class="btn" id="submit" type="submit"><i class="icon-search"></i></button>
+                        </form>
+                    </div>
+       
+    </div>
+    
+    <div class="row"><!-- Begin Header -->
+         <div class="span8 blog">
+       
+    {%if result%}
+	{%for object in result%}
+	<h3 class="title-bg">{{object.videoInfo.snippet.title}}</h3>
+
+	<div class="post-summary">
+        <div class="container">
+            <div class="post-summary-footer">
+            
+                <img src={{object.videoInfo.snippet.thumbnails.high.url}} class="img-thumbnail" width="370" height="208"></img>
+                    <p><strong>Video Description:</strong>{{object.videoInfo.snippet.description}}</p>
+                    
+                    <ul>
+                    <li>Views : {{object.videoInfo.statistics.viewCount}}</li>
+                    <li>Likes : {{object.videoInfo.statistics.likeCount}}</li>
+                    <li>Dislikes : {{object.videoInfo.statistics.dislikeCount}}</li>
+
+    {%endfor%}
+    {%endif%}
+                    </ul>
+            </div>
+	
+            <div class="span4 sidebar">  
+                
+        
+            <!--Popular Posts-->
+                    <h5 class="title-bg">Recommendations</h5>
+                    <ul class="popular-posts">
+                    {%if search%}
+    
+                    {% for object in search %}
+         
+                        <li><img src={{object.videoInfo.snippet.thumbnails.high.url}} class="img-thumbnail" width="370" height="208"></img>
+                        <div class="caption"><a href = "/video/{{object.videoInfo.id}}">{{object.videoInfo.snippet.title}}</a>
+                        </div></li>
+                
+                    {% endfor %}
+        
+                    {%endif%}
+                    </ul>
+            
+            </div>
+        </div>  
+    </div>    
+       
+   </body>
+</html>

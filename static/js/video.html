@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>MyVideo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- CSS
+================================================== -->
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap-responsive.css">
+<link rel="stylesheet" href="css/jquery.lightbox-0.5.css">
+<link rel="stylesheet" href="css/custom-styles.css">
+
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/jquery.custom.js"></script>
+
+
+</head>
+
+<body>
+	<div class="color-bar-1"></div>
+    <div class="color-bar-2 color-bg"></div>
+    
+    <div class="container main-container">
+      <div class="row header"><!-- Begin Header -->
+        <!-- Logo
+        ================================================== -->
+        <div class="span5 logo">
+        	<img src="img/video-icon-300px.png" alt="" style="width:80px;height:40px;"  />
+        </div>
+       
+      </div><!-- End Header -->
+     
+    <!-- Blog Content
+    ================================================== --> 
+    <div class="row">
+
+        <!-- Blog Posts
+        ================================================== --> 
+        <div class="span8 blog">
+	
+            <!-- Blog Post 1 -->
+            <article>
+	{%if result%}
+	{%for obj in result%}
+                <h3 class="title-bg">{{obj.videoInfo.snippet.title}}</h3>
+                <div class="post-summary">
+                    <img src={{obj.videoInfo.snippet.thumbnails.high.url}}></img>
+                    <p>Video Description-<p>{{obj.videoInfo.snippet.description}}</p></p>
+
+	{%endfor%}
+	{%endif%}
+                    <div class="post-summary-footer">
+                        <button class="btn btn-small btn-inverse" type="button">Read more</button>
+                        <ul class="post-data">
+                            
+                            <li><i class="icon-user"></i> <a href="#">Likes</a></li>
+                            <li><i class="icon-comment"></i> <a href="#">5 Comments</a></li>
+                            <li><i class="icon-tags"></i> <a href="#">photoshop</a>, <a href="#">tutorials</a>, <a href="#">illustration</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+          
+            
+        </div>
+
+        <!-- Blog Sidebar
+        ================================================== --> 
+        <div class="span4 sidebar">
+
+            <!--Search-->
+            <section>
+                		<div class="input-append">           
+        
+                		    <form form id="searchbox" action = "http://localhost:5000/refresh" method = "POST">
+                        		<input id="search" size="16" type="text" name="Searched for : "  placeholder="Search">
+					<button class="btn" id="submit" type="submit"><i class="icon-search"></i></button>
+					
+      			              </form>
+      			          </div>
+      		      </section>
+
+            
+        </div>
+
+    </div>
+    
+    </div> <!-- End Container -->
+    
+</body>
+</html>
